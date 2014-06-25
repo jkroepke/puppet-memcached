@@ -14,9 +14,17 @@ define memcached::instance (
 
   validate_re($port,'^112[0-9]{2}$')
 
+  # Newer versions of puppet use newer facts; use what we have
+  if $::lsbmajdistrelease {
+    $major_release = $::lsbmajdistrelease
+  }
+  else {
+    $major_release = $::operatingsystemmajrelease
+  }
+
   case $::operatingsystem {
     centos: {
-      if $::lsbmajdistrelease < 6 { fail("CentOS version 5 or lower not supported by this type.")}
+      if $major_release < 6 { fail("CentOS version 5 or lower not supported by this type.")}
       file { "/etc/sysconfig/memcached_${name}":
         ensure  => file,
         owner   => 'root',
@@ -34,7 +42,7 @@ define memcached::instance (
       }
     }
     ubuntu: {
-      if $::lsbmajdistrelease < 12 { fail("Ubuntu version 11.10 or lower not supported by this type.")}
+      if $major_release < 12 { fail("Ubuntu version 11.10 or lower not supported by this type.")}
       file { "/etc/memcached_${name}.conf":
         ensure  => file,
         owner   => 'root',
