@@ -5,7 +5,7 @@ A puppet module for managing one or more memcached instances on Ubuntu and CentO
 
 ## Description
 This module installs and manages one or more memcached instances through defined types.  
-It has been tested under Ubuntu 12.04 and CentOS 6.4 .  
+It has been tested under Debian 6 and 7, Ubuntu 12.04 and CentOS 6.4.
 For other Operating Systems, the defined type [memcached::instance](#memcachedinstance) may not work.  
 This module also manages the port permissions for memcached in SElinux.  
 
