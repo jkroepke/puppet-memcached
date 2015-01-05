@@ -7,7 +7,7 @@ class memcached (
   $user     = $::operatingsystem ? {
     'centos'  => 'memcached',
     'ubuntu'  => 'memcache',
-    'debian'  => 'memcache',
+    'debian'  => 'nobody',
   },
 
 ) {
