@@ -4,7 +4,7 @@ class memcached (
   $listen     = '127.0.0.1',
   $size       = '64',
   $conn       = 1024,
-  $item_size  = '1m'
+  $item_size  = '1m',
   $user       = $::operatingsystem ? {
     'centos'  => 'memcached',
     'ubuntu'  => 'memcache',
