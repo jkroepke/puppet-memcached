@@ -1,10 +1,11 @@
 class memcached (
-  $enabled  = true,
-  $port     = 11211,
-  $listen   = '127.0.0.1',
-  $size     = '64',
-  $conn     = 1024,
-  $user     = $::operatingsystem ? {
+  $enabled          = true,
+  $port             = 11211,
+  $listen           = '127.0.0.1',
+  $size             = '64',
+  $conn             = 1024,
+  $package_version  = 'installed',
+  $user             = $::operatingsystem ? {
     'centos'  => 'memcached',
     'ubuntu'  => 'memcache',
     'debian'  => 'nobody',
@@ -63,7 +64,7 @@ class memcached (
   }
 
   package { 'memcached':
-    ensure  => installed,
+    ensure  => $package_version,
   }
 
   service { 'memcached':
